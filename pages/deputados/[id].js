@@ -11,14 +11,20 @@ const Detalhes = ({ deputados, despesas, profissoes }) => {
 
 
             <Row>
-                {deputados.map(item => (
-                    <Col className="mb-3" md={2}>
-                        <Link href={'/deputados/' + item.id}>
-                            <Card.Img variant="top" src={item.urlFoto} />
-                            Detalhes
+            <Col md={3}>
+            <Card.Img variant="top" src={deputados.ultimoStatus.urlFoto} />
+          </Col>
+
+          <Col md={9}>
+            <p><strong></strong>{deputados.nome}</p>
+            <p><strong>Partido </strong>{deputados.siglaPartido}</p>
+            <p><strong>UF Partido </strong>{deputados.siglaUf}</p>            
+            <Link className='btn btn-danger' href={'/deputados/' + deputados.id}>
+                           
+                            Voltar
                         </Link>
                     </Col>
-                ))}
+                
             </Row>
 
             <h2 className='mt-3'>Despesas</h2>
@@ -46,6 +52,22 @@ const Detalhes = ({ deputados, despesas, profissoes }) => {
         
     </Table>
     </Row>
+    <Row>
+    <Col md={9}>
+            <div>
+            <strong>Profissões 2 </strong>
+              <ul>
+              {profissoes.map(item => (
+                <li><p>{item.titulo}</p></li>
+              ))}
+              </ul>
+            </div>
+
+            
+
+          </Col>
+        </Row>
+
     
 
             
@@ -63,10 +85,10 @@ export async function getServerSideProps(context) {
     const perfil = await apiDeputados.get('/deputados/' + id);
     const deputados = perfil.data.dados
 
-    const resDesp = await apiDeputados.get('/deputados/' + id + '/despesas');
+    const resDesp = await apiDeputados.get('/deputados/' + id + '/despesas/');
     const despesas = resDesp.data.dados
 
-  const resProf = await apiDeputados.get('/deputados/' + id + '/profissoes');
+  const resProf = await apiDeputados.get('/deputados/' + id + '/profissoes/');
   const profissoes = resProf.data.dados
 
     return {

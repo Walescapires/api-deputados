@@ -11,7 +11,7 @@ const index = (props) => {
                 {props.deputados.map(item => (
                     <Col>
                         <Card>
-                        <Link href={'/deputados/id' + item.id}>
+                        <Link href={'/deputados/' + item.id}>
                             <Card.Img variant="top" src={item.urlFoto} />
                             </Link>
                             
