@@ -9,17 +9,14 @@ const index = (props) => {
         <Pagina titulo="Deputados">
             <Row md={6}>
                 {props.deputados.map(item => (
-                    <Col>
+                    <Col className='m-3'>
                         <Card>
-                        <Link href={'/deputados/' + item.id}>
-                            <Card.Img variant="top" src={item.urlFoto} />
+                            <Link href={'/deputados/' + item.id}>
+                                <Card.Img variant="top" src={item.urlFoto} />
                             </Link>
-                            
                         </Card>
-
                     </Col>
                 ))}
-
             </Row>
         </Pagina>
     )
